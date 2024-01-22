@@ -1,0 +1,463 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Segment7Standard";
+  src: url(assets/font/Segment7Standard.ttf) format("truetype");
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.head-section {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.body-section {
+  background-color: lightgray;
+}
+
+/* ========== Timer Btn ========== */
+.dashboard-tools-settings-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #f5f5f5;
+  border-radius: 20px;
+  padding: 10px 16px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.dashboard-tools-timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  width: 40px;
+  height: 40px;
+  transition:
+    background-color cubic-bezier(0, 1.3, 0.7, 0.9) 0.8s,
+    width 0.3s ease 0s;
+}
+
+.dashboard-tools-timer.dashboard-tools-timer--active-count {
+  width: 90px;
+  gap: 5px;
+}
+.dashboard-tools-timer.dashboard-tools-timer--active-count.timer-ending {
+  background-color: #0085ff0d;
+}
+.dashboard-tools-timer.dashboard-tools-timer--active-count.timer-ending > * > * > * {
+  transition: color 300ms;
+  color: #0085ff;
+}
+
+.dashboard-tool-timer-icon {
+  width: 40px;
+  height: 40px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(icons/tools_timer.svg);
+  background-size: 20px;
+}
+
+.dashboard-tool-timer-count {
+  width: 0px;
+  transition: all 0.3s ease 0s;
+  overflow: hidden;
+  height: 20px;
+
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+
+  color: #000000;
+}
+
+.dashboard-tool-timer-count--show-timer {
+  width: 50px;
+}
+
+.dashboard-tool-timer-count--timer-paused {
+  color: #2c2d2e;
+  opacity: 0.5;
+}
+
+.dashboard-tools-timer.dashboard-tools-timer--timer-active {
+  border: none;
+  background-color: #0085ff0d;
+}
+.dashboard-tools-timer.dashboard-tools-timer--timer-active:hover {
+  background-color: #0085ff0d;
+}
+
+.dashboard-tools-timer:hover {
+  background-color: #f5f5f5;
+}
+
+.dashboard-tools-timer--timer-active > .dashboard-tool-timer-icon {
+  background-image: url(icons/tools_timer-active.svg);
+}
+
+.dashboard-tools-timer--active-count > .dashboard-tool-timer-icon {
+  width: 20px;
+}
+/* =============================== */
+
+/* ========== Timer ========== */
+
+.dashboard-timer-container {
+  z-index: 999;
+  width: 280px;
+  background-color: #fff;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  left: 0;
+  margin-inline: auto;
+  padding: 12px;
+
+  transition: all 0.3s ease 0s;
+
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.dashboard-timer-container.dashboard-timer-container--hide-timer {
+  scale: 0.4;
+  z-index: 0;
+  top: -46px;
+  opacity: 0;
+  z-index: -1;
+}
+
+.small {
+  font-size: 85%;
+}
+
+.pruffme_button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0px 12px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: transparent;
+  transition: background-color 300ms ease;
+}
+.pruffme_button.ghost {
+  color: #216fe6;
+}
+.pruffme_button.small {
+  height: 32px;
+}
+.pruffme_button.secondary {
+  background-color: #f9f9f9;
+}
+.pruffme_button.secondary:hover {
+  background-color: #f5f5f5;
+}
+.pruffme_button.outline:hover {
+  background-color: #f9f9f9;
+}
+
+.dashboard-timer-display__hide-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  background-color: transparent;
+  background-image: url(icons/timer-btn-hide.svg);
+
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.dashboard-timer-container__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.dashboard-timer-colon {
+  height: 64px;
+  user-select: none;
+
+  padding: 0;
+}
+
+.dashboard-timer-colon--hide {
+  height: 26px;
+}
+
+.dashboard-clock-counter__container {
+  display: flex;
+  height: 48px;
+  width: 130px;
+  flex-direction: column;
+
+  font-size: 48px;
+  line-height: 100%;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.dashboard-clock-counter__background {
+  height: 48px;
+  width: 100%;
+  margin-bottom: -48px;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  border-bottom: 1px solid transparent;
+}
+
+.dashboard-clock-counter__background--hide {
+  height: 24px;
+  margin: 0;
+}
+
+.dashboard-clock-counter__foreground {
+  height: 48px;
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  border-bottom: 1px solid transparent;
+}
+.dashboard-clock-counter__foreground.timer-ending > * {
+  transition: color 300ms;
+  color: #0085ff;
+}
+
+.dashboard-clock-counter__foreground:focus-within {
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 0px;
+}
+
+.dashboard-clock-counter__fake {
+  height: 48px;
+  width: 57px;
+  font-family: "Segment7Standard", sans-serif;
+  /* font-style: italic; */
+  font-weight: 600;
+
+  padding: 2px 0 0 0;
+
+  font-size: 48px;
+  line-height: 100%;
+
+  color: #f2f4f6;
+}
+
+.dashboard-clock-counter__fake--hide {
+  height: 20px;
+  width: 22px;
+  font-size: 18px;
+  line-height: 20px;
+  color: #000;
+  padding: 0;
+}
+
+.dashboard-clock-counter__input {
+  height: 46px;
+  width: 57px;
+  font-family: "Segment7Standard", sans-serif;
+  /* font-style: italic; */
+  font-weight: 600;
+
+  padding: 5px 0 0 0;
+
+  font-size: 48px;
+  line-height: 100%;
+
+  color: #2c2d2e;
+
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+.dashboard-clock-counter__input::selection {
+  background-color: transparent;
+}
+
+.dashboard-clock-counter__input:focus {
+  background-color: #216fe640;
+
+  box-shadow: 0px -4px 0px #fff inset;
+}
+
+.dashboard-timer-display__counter {
+  margin-bottom: 4px;
+}
+
+.dashboard-timer-display__info {
+  height: 20px;
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  color: #686a6d;
+  line-height: 20px;
+  user-select: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 196px;
+}
+
+.dashboard-timer-display__progress-container {
+  height: 4px;
+  border-radius: 2px;
+  margin-top: 8px;
+  background-color: #f7f7f9;
+  overflow: hidden;
+}
+
+.dashboard-timer-display__progress-bar {
+  height: 100%;
+  border-radius: inherit;
+  background-color: #0085ff;
+  transition: width 200ms;
+}
+
+.dashboard-timer-display__progress-bar.dashboard-clock-counter__container--paused {
+  background-color: #eee;
+}
+
+.dashboard-timer-display__progress-bar--hidden {
+  background-color: transparent;
+}
+
+.dashboard-timer-control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-timer-control__block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.pruffme_button.pruffme_button.dashboard-timer-control__button {
+  user-select: none;
+  border-radius: 8px;
+}
+
+.pruffme_button.dashboard-timer-control__button--stop,
+.pruffme_button.dashboard-timer-control__button--play,
+.pruffme_button.dashboard-timer-control__button--pause {
+  width: 32px;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.pruffme_button.dashboard-timer-control__button--pause:active {
+  background-color: #0085ff0d;
+}
+
+.dashboard-timer-control__button--stop {
+  display: none;
+}
+
+.pruffme_button.dashboard-timer-control__button--play {
+  background-color: #0085ff;
+}
+.pruffme_button.dashboard-timer-control__button--play:active {
+  background-color: #216fe6;
+}
+
+.pruffme_button.dashboard-timer-control__button--stop,
+.pruffme_button.dashboard-timer-control__button--pause {
+  border: 1px solid #f5f5f5;
+}
+
+.pruffme_button.dashboard-timer-control__button--pause {
+  border: 1px solid #0085ff;
+}
+
+.pruffme_button.dashboard-timer-control__button--one,
+.pruffme_button.dashboard-timer-control__button--five {
+  padding: 0px 8px;
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  color: #2c2d2e;
+}
+
+.pruffme_button.dashboard-timer-control__button--stop {
+  background-image: url(icons/timer-btn-stop.svg);
+}
+.pruffme_button.dashboard-timer-control__button--play {
+  background-image: url(icons/timer-btn-play.svg);
+}
+.pruffme_button.dashboard-timer-control__button--pause {
+  border-color: #0085ff;
+  background-image: url(icons/timer-btn-pause.svg);
+}
+
+.pruffme_button.dashboard-timer-control__button-action:disabled {
+  background-color: #0085ff;
+  cursor: auto;
+  opacity: 0.5;
+}
+
+.dashboard-clock-counter--counter-blocked {
+  color: #2c2d2e;
+  user-select: none;
+  pointer-events: none;
+}
+
+.dashboard-clock-counter__input--counter-minutes {
+  text-align: right;
+}
+
+.dashboard-clock-counter__container--paused {
+  animation-name: flashing-timer;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: step-end;
+}
+
+@keyframes flashing-timer {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
